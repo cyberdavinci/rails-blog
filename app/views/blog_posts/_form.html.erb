@@ -8,14 +8,17 @@
     <%end%>
 </div>
 <%end%>
-<div>
+<div class="flex flex-col gap-5 item-start">
+
+<div class="flex flex-col items-start">
 <%= form.label :title%>
-<%= form.text_field :title%>
+<%= form.text_field :title,class:" resize-none min-w-[400px] border-slate-600", placeholder:"Blog title here"%>
 </div>
-<div>
+<div class="flex flex-col items-start">
 <%= form.label :body%>
-<%= form.text_area :body%>
+<%= form.text_area :body, class:" resize-none min-w-[400px] border-slate-600", placeholder:"Blog content here"%>
+</div>
 </div>
 
-<%= form.button %>
+<%= form.button "Add Post", class:" bg-slate-900 text-slate-200 rounded px-2 py-1 mt-2"%>
 <%end%>

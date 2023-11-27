@@ -1,16 +1,48 @@
-<h1 class="text-slate-700">Hello Rubs, Wasup</h1>
-<% if !user_signed_in?%>
+
+<div class="w-full">
+    <div class="w-full">
+      <% if user_signed_in? %>
+      <%# Once you remove registerable from user model we can no longer use the ones currently commented %>
+        <%# <%= link_to "Profile", edit_user_registration_path %>
+        <div class="flex justify-between w-full">
+
+        <%= link_to "New blog post", new_blog_post_path, class:" no-underline bg-slate-300 text-slate-700 px-2 rounded-sm" %> 
+        <%= button_to "Log out", destroy_user_session_path,class:"bg-red-800 text-red-300 px-2 rounded-sm" ,method: :delete%>
+        </div>
+      <% else %>
+    
+
         <%= link_to "Login", new_user_session_path, class:"text-green-900 bg-green-300 px-6 py-2 float-right rounded no-underline" %>
-<%end%>
-<%@blog_posts.each do |blog_post|%>
-    <div>
-        <h2><%= link_to blog_post.title, blog_post%></h2>
+        <%= link_to "Sign In", new_user_registration_path, class:"text-slate-900 bg-slate-200 px-6 py-2 float-right rounded no-underline mr-2" %>
 
-        <%# <h2><%= link_to blog_post.title, blog_post_path(blog_post.id)</h2> %>
+<%#      
+        <%= link_to "Login", new_user_session_path, class:"text-green-900 bg-green-300 px-6 py-2 float-right rounded no-underline" %> 
+     
+        <%# <%=# link_to "Sign up", new_user_registration_path%> 
+      <%end%>
+    </div>
+<h1 class="text-slate-700">Hello Rubs, Wasup</h1>
+<%# <% if !user_signed_in?%> 
 
-        <%# <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}"%>
-        <%# </h2>  %>
-        <p><%= blog_post.body%></p> 
+    <%# <%= link_to "Login", new_user_session_path, class:"text-green-900 bg-green-300 px-6 py-2 float-right rounded no-underline" %> 
+    <%# <%= button_to "Sign In", new_user_registration_path, class:"text-slate-900 bg-slate-200 px-6 py-2 float-right rounded no-underline mr-2" %> 
+<%# <%end %> 
+</div>
+<% if !@blog_posts.blank?%>
+    <%@blog_posts.each do |blog_post|%>
+        <div>
+            <h2><%= link_to blog_post.title, blog_post%></h2>
+
+            <%# <h2><%= link_to blog_post.title, blog_post_path(blog_post.id)</h2> %>
+
+            <%# <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}"%>
+            <%# </h2>  %>
+            <p><%= blog_post.body%></p> 
+        </div>
+    <% end %>
+<% else %>
+    <div class="p-3">
+        <h1 class="font-semibold md:text-2xl text-xl text-red-300">No Blog Post yet! be the first.</h1>
     </div>
 <% end %>
  

@@ -12,10 +12,12 @@ class BlogPostsController < ApplicationController
   #   redirect_to root_path
  end
  def new
-  @blog_post = BlogPost.new
+  # @blog_post = BlogPost.new
+  @blog_post = current_user.blog_posts.build
  end
  def create
-    @blog_post = BlogPost.new(blog_post_params)
+    @blog_post = current_user.blog_posts.build(blog_post_params)
+    # @blog_post = BlogPost.new(blog_post_params)
     if @blog_post.save
       redirect_to @blog_post
     else
@@ -49,7 +51,7 @@ class BlogPostsController < ApplicationController
  end
 
  def set_blog_post
-   @blog_post = BlogPost.find(params[:id])
+   @blog_post = current_user.blog_posts.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
  end
