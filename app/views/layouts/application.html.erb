@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="prose mx-auto">
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+
+     <div class="w-full">
+      <% if user_signed_in? %>
+      <%# Once you remove registerable from user model we can no longer use the ones currently commented %>
+        <%# <%= link_to "Profile", edit_user_registration_path %>
+        <%= link_to "New blog post", new_blog_post_path %> 
+        <%= button_to "Log out", destroy_user_session_path, method: :delete%>
+      <% else %>
+<%#      
+        <%= link_to "Login", new_user_session_path, class:"text-green-900 bg-green-300 px-6 py-2 float-right rounded no-underline" %> 
+     
+        <%# <%=# link_to "Sign up", new_user_registration_path%> 
+      <%end%>
+     </div>
+    <%= yield %>
+  </body>
+</html>
