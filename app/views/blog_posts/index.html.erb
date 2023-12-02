@@ -7,6 +7,7 @@
         <div class="flex justify-between w-full">
 
         <%= link_to "New blog post", new_blog_post_path, class:" no-underline bg-slate-300 text-slate-700 px-2 rounded-sm" %> 
+        <%= link_to "Profile", edit_user_registration_path, class:" no-underline bg-slate-300 text-slate-700 px-2 rounded-sm" %> 
         <%= button_to "Log out", destroy_user_session_path,class:"bg-red-800 text-red-300 px-2 rounded-sm" ,method: :delete%>
         </div>
       <% else %>
@@ -32,6 +33,7 @@
     <%@blog_posts.each do |blog_post|%>
         <div>
             <h2><%= link_to blog_post.title, blog_post%></h2>
+            <p>author <%= blog_post.user.email%></p>
 
             <%# <h2><%= link_to blog_post.title, blog_post_path(blog_post.id)</h2> %>
 
